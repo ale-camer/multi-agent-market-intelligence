@@ -1,4 +1,4 @@
-"""Agents package providing BaseAgent and agent configuration schemas."""
+"""Agents package providing BaseAgent and specialized agent implementations."""
 
 from multi_agent_market_intelligence.agents.base import BaseAgent
 from multi_agent_market_intelligence.agents.schema import (
@@ -6,10 +6,12 @@ from multi_agent_market_intelligence.agents.schema import (
     AgentRole,
     AgentStatus,
 )
+from multi_agent_market_intelligence.research.agent import ResearchAgent
 
 __all__ = [
     "AgentConfig",
     "AgentRole",
     "AgentStatus",
     "BaseAgent",
+    "ResearchAgent",
 ]

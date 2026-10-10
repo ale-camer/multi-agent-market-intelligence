@@ -5,6 +5,7 @@ from multi_agent_market_intelligence.agents import (
     AgentRole,
     AgentStatus,
     BaseAgent,
+    ResearchAgent,
 )
 from multi_agent_market_intelligence.messaging import (
     AgentMessage,
@@ -27,6 +28,7 @@ from multi_agent_market_intelligence.research import (
     ReportType,
     SentimentAnalysisResult,
     SentimentLabel,
+    create_research_node_handler,
 )
 from multi_agent_market_intelligence.state import (
     AgentExecutionRecord,
@@ -66,6 +68,7 @@ __all__ = [
     "PortfolioSnapshot",
     "Position",
     "ReportType",
+    "ResearchAgent",
     "ResearchArtifact",
     "RiskDecision",
     "SentimentAnalysisResult",
@@ -74,4 +77,5 @@ __all__ = [
     "StateContainer",
     "StateProtocol",
     "TradingSignal",
+    "create_research_node_handler",
 ]
