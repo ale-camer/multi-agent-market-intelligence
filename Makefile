@@ -73,12 +73,13 @@ finish-issue:
 	git add -A
 	git commit -m "$(MSG)"
 	git push origin HEAD
-	@if [ "$(ID)" = "0" ]; then \
-		gh pr create --base develop --head $$BRANCH --title "$(MSG)" --body "Issue 0 Setup" || true; \
-		gh pr merge $$BRANCH --squash --delete-branch || true; \
+	@BRANCH=$$(git rev-parse --abbrev-ref HEAD); \
+	if [ "$(ID)" = "0" ]; then \
+		gh pr create --base develop --head "$$BRANCH" --title "$(MSG)" --body "Issue 0 Setup" || true; \
+		gh pr merge "$$BRANCH" --squash --delete-branch || true; \
 	else \
-		gh pr create --base develop --head $$BRANCH --title "$(MSG)" --body "Closes #$(ID)" || true; \
-		gh pr merge $$BRANCH --squash --delete-branch || true; \
+		gh pr create --base develop --head "$$BRANCH" --title "$(MSG)" --body "Closes #$(ID)" || true; \
+		gh pr merge "$$BRANCH" --squash --delete-branch || true; \
 		gh issue close $(ID) || true; \
 	fi
 	git checkout develop
