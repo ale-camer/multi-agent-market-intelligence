@@ -1,5 +1,9 @@
 """Research agent domain models, parsers, extraction tools, and sentiment engine."""
 
+from multi_agent_market_intelligence.research.agent import (
+    ResearchAgent,
+    create_research_node_handler,
+)
 from multi_agent_market_intelligence.research.models import (
     FinancialReport,
     NewsArticle,
@@ -28,8 +32,10 @@ __all__ = [
     "NewsExtractor",
     "NewsHTMLParser",
     "ReportType",
+    "ResearchAgent",
     "SentimentAnalysisResult",
     "SentimentLabel",
+    "create_research_node_handler",
     "report_to_research_artifact",
     "to_research_artifact",
 ]
