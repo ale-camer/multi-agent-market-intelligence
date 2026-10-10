@@ -21,9 +21,12 @@ from multi_agent_market_intelligence.orchestrator import (
 from multi_agent_market_intelligence.research import (
     FinancialReport,
     FinancialReportLoader,
+    FinancialSentimentAnalyzer,
     NewsArticle,
     NewsExtractor,
     ReportType,
+    SentimentAnalysisResult,
+    SentimentLabel,
 )
 from multi_agent_market_intelligence.state import (
     AgentExecutionRecord,
@@ -50,6 +53,7 @@ __all__ = [
     "DecisionStatus",
     "FinancialReport",
     "FinancialReportLoader",
+    "FinancialSentimentAnalyzer",
     "MarketIntelligenceOrchestrator",
     "MarketIntelligenceState",
     "MessageBus",
@@ -64,6 +68,8 @@ __all__ = [
     "ReportType",
     "ResearchArtifact",
     "RiskDecision",
+    "SentimentAnalysisResult",
+    "SentimentLabel",
     "SignalAction",
     "StateContainer",
     "StateProtocol",
