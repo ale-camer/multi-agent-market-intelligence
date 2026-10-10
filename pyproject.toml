@@ -1,0 +1,76 @@
+[project]
+name = "multi_agent_market_intelligence"
+version = "0.1.0"
+description = "Multi-Agent Market Intelligence Orchestration"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "pydantic",
+    "langgraph",
+    "langchain"
+]
+
+[project.optional-dependencies]
+extract = ["beautifulsoup4", "requests"]
+transform = ["pandas", "numpy"]
+orchestration = ["langchain-core", "langgraph"]
+dev = [
+    "ruff",
+    "mypy",
+    "pytest",
+    "pytest-cov"
+]
+all = [
+    "beautifulsoup4",
+    "requests",
+    "pandas",
+    "numpy",
+    "langchain-core",
+    "langgraph",
+    "ruff",
+    "mypy",
+    "pytest",
+    "pytest-cov"
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers"
+markers = [
+    "issue_0: Issue 0 tests",
+    "issue_1: Issue 1 tests",
+    "issue_2: Issue 2 tests",
+    "issue_3: Issue 3 tests",
+    "issue_4: Issue 4 tests",
+    "issue_5: Issue 5 tests",
+    "issue_6: Issue 6 tests",
+    "issue_7: Issue 7 tests",
+    "issue_8: Issue 8 tests",
+    "issue_9: Issue 9 tests",
+    "issue_10: Issue 10 tests",
+    "issue_11: Issue 11 tests",
+    "issue_12: Issue 12 tests",
+    "issue_13: Issue 13 tests",
+    "issue_14: Issue 14 tests",
+    "issue_15: Issue 15 tests",
+    "issue_16: Issue 16 tests",
+    "issue_17: Issue 17 tests",
+    "issue_18: Issue 18 tests",
+    "issue_19: Issue 19 tests",
+    "issue_20: Issue 20 tests",
+    "issue_21: Issue 21 tests",
+    "issue_22: Issue 22 tests",
+    "issue_23: Issue 23 tests",
+    "issue_24: Issue 24 tests",
+    "issue_25: Issue 25 tests",
+]
