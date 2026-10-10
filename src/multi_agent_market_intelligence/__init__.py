@@ -18,6 +18,10 @@ from multi_agent_market_intelligence.orchestrator import (
     NodeNames,
     OrchestratorState,
 )
+from multi_agent_market_intelligence.research import (
+    NewsArticle,
+    NewsExtractor,
+)
 from multi_agent_market_intelligence.state import (
     AgentExecutionRecord,
     DecisionStatus,
@@ -46,6 +50,8 @@ __all__ = [
     "MessageBus",
     "MessagePriority",
     "MessageType",
+    "NewsArticle",
+    "NewsExtractor",
     "NodeNames",
     "OrchestratorState",
     "PortfolioSnapshot",
