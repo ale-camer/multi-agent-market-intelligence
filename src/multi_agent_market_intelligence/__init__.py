@@ -1,5 +1,11 @@
 """Multi-Agent Market Intelligence system package."""
 
+from multi_agent_market_intelligence.agents import (
+    AgentConfig,
+    AgentRole,
+    AgentStatus,
+    BaseAgent,
+)
 from multi_agent_market_intelligence.messaging import (
     AgentMessage,
     MessageBus,
@@ -27,8 +33,12 @@ from multi_agent_market_intelligence.state import (
 )
 
 __all__ = [
+    "AgentConfig",
     "AgentExecutionRecord",
     "AgentMessage",
+    "AgentRole",
+    "AgentStatus",
+    "BaseAgent",
     "BaseOrchestrator",
     "DecisionStatus",
     "MarketIntelligenceOrchestrator",
