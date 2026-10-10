@@ -19,8 +19,11 @@ from multi_agent_market_intelligence.orchestrator import (
     OrchestratorState,
 )
 from multi_agent_market_intelligence.research import (
+    FinancialReport,
+    FinancialReportLoader,
     NewsArticle,
     NewsExtractor,
+    ReportType,
 )
 from multi_agent_market_intelligence.state import (
     AgentExecutionRecord,
@@ -45,6 +48,8 @@ __all__ = [
     "BaseAgent",
     "BaseOrchestrator",
     "DecisionStatus",
+    "FinancialReport",
+    "FinancialReportLoader",
     "MarketIntelligenceOrchestrator",
     "MarketIntelligenceState",
     "MessageBus",
@@ -56,6 +61,7 @@ __all__ = [
     "OrchestratorState",
     "PortfolioSnapshot",
     "Position",
+    "ReportType",
     "ResearchArtifact",
     "RiskDecision",
     "SignalAction",
