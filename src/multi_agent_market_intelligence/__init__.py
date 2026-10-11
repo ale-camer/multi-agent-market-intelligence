@@ -49,8 +49,10 @@ from multi_agent_market_intelligence.trading import (
     FundamentalMetrics,
     MACDResult,
     OHLCVBar,
+    SignalStrategyConfig,
     TechnicalIndicatorsCalculator,
     TechnicalIndicatorsResult,
+    TradingSignalGenerator,
     generate_mock_ohlcv,
 )
 
@@ -89,11 +91,13 @@ __all__ = [
     "SentimentAnalysisResult",
     "SentimentLabel",
     "SignalAction",
+    "SignalStrategyConfig",
     "StateContainer",
     "StateProtocol",
     "TechnicalIndicatorsCalculator",
     "TechnicalIndicatorsResult",
     "TradingSignal",
+    "TradingSignalGenerator",
     "create_research_node_handler",
     "generate_mock_ohlcv",
 ]
