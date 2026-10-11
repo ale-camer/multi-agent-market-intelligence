@@ -45,6 +45,8 @@ from multi_agent_market_intelligence.state import (
 )
 from multi_agent_market_intelligence.trading import (
     BollingerBandsResult,
+    FundamentalDataLoader,
+    FundamentalMetrics,
     MACDResult,
     OHLCVBar,
     TechnicalIndicatorsCalculator,
@@ -65,6 +67,8 @@ __all__ = [
     "FinancialReport",
     "FinancialReportLoader",
     "FinancialSentimentAnalyzer",
+    "FundamentalDataLoader",
+    "FundamentalMetrics",
     "MACDResult",
     "MarketIntelligenceOrchestrator",
     "MarketIntelligenceState",
