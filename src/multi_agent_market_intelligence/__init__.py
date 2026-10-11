@@ -52,7 +52,9 @@ from multi_agent_market_intelligence.trading import (
     SignalStrategyConfig,
     TechnicalIndicatorsCalculator,
     TechnicalIndicatorsResult,
+    TradingAnalystAgent,
     TradingSignalGenerator,
+    create_trading_analyst_node_handler,
     generate_mock_ohlcv,
 )
 
@@ -96,8 +98,10 @@ __all__ = [
     "StateProtocol",
     "TechnicalIndicatorsCalculator",
     "TechnicalIndicatorsResult",
+    "TradingAnalystAgent",
     "TradingSignal",
     "TradingSignalGenerator",
     "create_research_node_handler",
+    "create_trading_analyst_node_handler",
     "generate_mock_ohlcv",
 ]

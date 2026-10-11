@@ -1,5 +1,9 @@
 """Trading analysis, technical indicators, and quantitative signal generation."""
 
+from multi_agent_market_intelligence.trading.agent import (
+    TradingAnalystAgent,
+    create_trading_analyst_node_handler,
+)
 from multi_agent_market_intelligence.trading.fundamental import (
     FundamentalDataLoader,
 )
@@ -29,6 +33,8 @@ __all__ = [
     "SignalStrategyConfig",
     "TechnicalIndicatorsCalculator",
     "TechnicalIndicatorsResult",
+    "TradingAnalystAgent",
     "TradingSignalGenerator",
+    "create_trading_analyst_node_handler",
     "generate_mock_ohlcv",
 ]
