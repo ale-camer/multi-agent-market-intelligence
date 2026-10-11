@@ -11,7 +11,11 @@ from multi_agent_market_intelligence.trading.models import (
     FundamentalMetrics,
     MACDResult,
     OHLCVBar,
+    SignalStrategyConfig,
     TechnicalIndicatorsResult,
+)
+from multi_agent_market_intelligence.trading.signals import (
+    TradingSignalGenerator,
 )
 
 generate_mock_ohlcv = TechnicalIndicatorsCalculator.generate_mock_ohlcv
@@ -22,7 +26,9 @@ __all__ = [
     "FundamentalMetrics",
     "MACDResult",
     "OHLCVBar",
+    "SignalStrategyConfig",
     "TechnicalIndicatorsCalculator",
     "TechnicalIndicatorsResult",
+    "TradingSignalGenerator",
     "generate_mock_ohlcv",
 ]

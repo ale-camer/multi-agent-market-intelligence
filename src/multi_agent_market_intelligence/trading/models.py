@@ -176,3 +176,29 @@ class FundamentalMetrics(DomainStateModel):
     def to_dict(self) -> dict[str, Any]:
         """Convert metrics to a nested dictionary for state integration."""
         return self.model_dump()
+
+
+class SignalStrategyConfig(DomainStateModel):
+    """Configuration specification and weighting parameters for signal generation."""
+
+    # Dimension Weights (must sum to > 0)
+    technical_weight: float = 0.50
+    fundamental_weight: float = 0.35
+    sentiment_weight: float = 0.15
+
+    # Action Decision Thresholds (composite score in [-1.0, 1.0])
+    buy_threshold: float = 0.25
+    sell_threshold: float = -0.25
+    min_confidence: float = 0.30
+
+    # Technical Indicator Sub-Weights & Thresholds
+    rsi_oversold: float = 30.0
+    rsi_overbought: float = 70.0
+    macd_weight: float = 0.35
+    rsi_weight: float = 0.35
+    trend_weight: float = 0.30
+
+    # Risk Parameters
+    atr_stop_multiplier: float = 2.0
+    risk_reward_ratio: float = 2.0
+    default_stop_loss_pct: float = 0.05
