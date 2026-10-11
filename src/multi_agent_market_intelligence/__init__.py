@@ -43,6 +43,14 @@ from multi_agent_market_intelligence.state import (
     StateProtocol,
     TradingSignal,
 )
+from multi_agent_market_intelligence.trading import (
+    BollingerBandsResult,
+    MACDResult,
+    OHLCVBar,
+    TechnicalIndicatorsCalculator,
+    TechnicalIndicatorsResult,
+    generate_mock_ohlcv,
+)
 
 __all__ = [
     "AgentConfig",
@@ -52,10 +60,12 @@ __all__ = [
     "AgentStatus",
     "BaseAgent",
     "BaseOrchestrator",
+    "BollingerBandsResult",
     "DecisionStatus",
     "FinancialReport",
     "FinancialReportLoader",
     "FinancialSentimentAnalyzer",
+    "MACDResult",
     "MarketIntelligenceOrchestrator",
     "MarketIntelligenceState",
     "MessageBus",
@@ -64,6 +74,7 @@ __all__ = [
     "NewsArticle",
     "NewsExtractor",
     "NodeNames",
+    "OHLCVBar",
     "OrchestratorState",
     "PortfolioSnapshot",
     "Position",
@@ -76,6 +87,9 @@ __all__ = [
     "SignalAction",
     "StateContainer",
     "StateProtocol",
+    "TechnicalIndicatorsCalculator",
+    "TechnicalIndicatorsResult",
     "TradingSignal",
     "create_research_node_handler",
+    "generate_mock_ohlcv",
 ]
