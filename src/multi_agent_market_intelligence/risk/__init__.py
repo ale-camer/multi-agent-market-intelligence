@@ -13,6 +13,10 @@ from multi_agent_market_intelligence.risk.models import (
     TradeExecution,
 )
 from multi_agent_market_intelligence.risk.portfolio import PortfolioTracker
+from multi_agent_market_intelligence.risk.validation import (
+    SignalRiskValidator,
+    SignalValidator,
+)
 
 __all__ = [
     "PortfolioMetrics",
@@ -20,6 +24,8 @@ __all__ = [
     "RiskCheckResult",
     "RiskLimitsConfig",
     "RiskViolationType",
+    "SignalRiskValidator",
+    "SignalValidator",
     "TradeExecution",
     "aggressive_risk_limits",
     "conservative_risk_limits",
