@@ -7,6 +7,10 @@ from multi_agent_market_intelligence.agents.schema import (
     AgentStatus,
 )
 from multi_agent_market_intelligence.research.agent import ResearchAgent
+from multi_agent_market_intelligence.risk.agent import (
+    RiskManagerAgent,
+    RiskPortfolioManagerAgent,
+)
 from multi_agent_market_intelligence.trading.agent import TradingAnalystAgent
 
 __all__ = [
@@ -15,5 +19,7 @@ __all__ = [
     "AgentStatus",
     "BaseAgent",
     "ResearchAgent",
+    "RiskManagerAgent",
+    "RiskPortfolioManagerAgent",
     "TradingAnalystAgent",
 ]
