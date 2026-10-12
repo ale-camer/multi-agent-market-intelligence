@@ -1,5 +1,10 @@
 """Risk management policies, limits configuration, and evaluation protocols."""
 
+from multi_agent_market_intelligence.risk.agent import (
+    RiskManagerAgent,
+    RiskPortfolioManagerAgent,
+    create_risk_manager_node_handler,
+)
 from multi_agent_market_intelligence.risk.config import (
     RiskLimitsConfig,
     aggressive_risk_limits,
@@ -23,11 +28,14 @@ __all__ = [
     "PortfolioTracker",
     "RiskCheckResult",
     "RiskLimitsConfig",
+    "RiskManagerAgent",
+    "RiskPortfolioManagerAgent",
     "RiskViolationType",
     "SignalRiskValidator",
     "SignalValidator",
     "TradeExecution",
     "aggressive_risk_limits",
     "conservative_risk_limits",
+    "create_risk_manager_node_handler",
     "moderate_risk_limits",
 ]
