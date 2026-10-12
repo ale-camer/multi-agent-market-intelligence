@@ -5,10 +5,13 @@ from typing import Any
 
 from pydantic import BaseModel, Field, field_validator
 
+from multi_agent_market_intelligence.risk.models import TradeExecution
 from multi_agent_market_intelligence.state.models import (
     AgentExecutionRecord,
     PortfolioSnapshot,
+    Position,
     RiskDecision,
+    SignalAction,
     TradingSignal,
 )
 
@@ -100,4 +103,103 @@ class ErrorResponse(BaseModel):
     timestamp: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc),
         description="UTC failure timestamp.",
+    )
+
+
+class PortfolioStateResponse(BaseModel):
+    """Real-time summary of portfolio assets, balances, and risk exposure."""
+
+    cash: float = Field(description="Available liquid cash balance.")
+    total_equity: float = Field(description="Total portfolio net equity.")
+    gross_exposure: float = Field(
+        description="Gross absolute market exposure across open positions."
+    )
+    net_exposure: float = Field(description="Signed net market exposure.")
+    leverage: float = Field(description="Current gross leverage ratio.")
+    drawdown_pct: float = Field(description="Current drawdown from peak equity.")
+    daily_pnl: float = Field(description="Intraday absolute profit and loss.")
+    daily_pnl_pct: float = Field(description="Intraday percentage return.")
+    realized_pnl: float = Field(description="Cumulative net realized profit and loss.")
+    unrealized_pnl: float = Field(description="Current unrealized mark-to-market profit and loss.")
+    positions_count: int = Field(description="Number of active open positions.")
+    positions: dict[str, Position] = Field(
+        default_factory=dict,
+        description="Active open positions mapped by ticker symbol.",
+    )
+
+
+class CashTransactionRequest(BaseModel):
+    """Payload for deposit or withdrawal cash balance operations."""
+
+    amount: float = Field(gt=0.0, description="Positive cash amount to deposit or withdraw.")
+
+
+class CashTransactionResponse(BaseModel):
+    """Confirmation telemetry for a completed cash balance operation."""
+
+    transaction_type: str = Field(description="Classification: 'DEPOSIT' or 'WITHDRAWAL'.")
+    amount: float = Field(description="Cash amount transferred.")
+    new_cash: float = Field(description="Updated available cash balance post-transaction.")
+    total_equity: float = Field(description="Updated total portfolio equity.")
+    timestamp: datetime = Field(
+        default_factory=lambda: datetime.now(timezone.utc),
+        description="UTC transaction completion timestamp.",
+    )
+
+
+class TradeExecutionRequest(BaseModel):
+    """Payload requesting execution of a portfolio trade order."""
+
+    symbol: str = Field(min_length=1, description="Asset ticker symbol (e.g. 'AAPL').")
+    action: SignalAction = Field(description="Order side action ('BUY' or 'SELL').")
+    quantity: float = Field(gt=0.0, description="Number of units/shares to trade.")
+    price: float = Field(gt=0.0, description="Execution fill price per unit.")
+    commission: float = Field(default=0.0, ge=0.0, description="Transaction fee or commission.")
+
+    @field_validator("symbol")
+    @classmethod
+    def validate_symbol(cls, v: str) -> str:
+        """Normalize symbol to trimmed uppercase."""
+        cleaned = v.strip().upper()
+        if not cleaned:
+            raise ValueError("symbol must be a non-empty ticker string.")
+        return cleaned
+
+
+class TradeExecutionResponse(BaseModel):
+    """Audit confirmation receipt for a completed portfolio trade transaction."""
+
+    symbol: str = Field(description="Asset ticker symbol.")
+    action: SignalAction = Field(description="Executed transaction action.")
+    quantity: float = Field(description="Executed trade size in units.")
+    price: float = Field(description="Execution fill price per unit.")
+    cost: float = Field(description="Gross transaction capital value.")
+    realized_pnl: float = Field(description="Net realized profit and loss produced by this trade.")
+    commission: float = Field(description="Transaction fee charged.")
+    timestamp: datetime = Field(description="UTC execution timestamp.")
+
+
+class PositionsListResponse(BaseModel):
+    """Container listing all currently open portfolio asset positions."""
+
+    positions: list[Position] = Field(description="List of currently active position objects.")
+    total_positions: int = Field(description="Total count of active positions.")
+
+
+class TradeHistoryResponse(BaseModel):
+    """Chronological audit trail of executed portfolio trade transactions."""
+
+    history: list[TradeExecution] = Field(
+        description="Chronological sequence of trade transactions."
+    )
+    total_trades: int = Field(description="Total count of executed trade transactions.")
+
+
+class PortfolioResetRequest(BaseModel):
+    """Payload requesting portfolio re-initialization and baseline cash reset."""
+
+    initial_cash: float = Field(
+        default=100_000.0,
+        gt=0.0,
+        description="Initial cash balance to seed into reset portfolio.",
     )
