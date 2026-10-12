@@ -179,13 +179,15 @@ class ResearchAgent(BaseAgent):
 
     def _resolve_target_symbols(self, context: dict[str, Any]) -> list[str]:
         """Resolve ticker symbols from state context or defaults."""
-        raw_symbols = context.get("symbols")
-        if raw_symbols and isinstance(raw_symbols, list):
-            return [str(s).upper() for s in raw_symbols if s]
-
         single_sym = context.get("symbol")
-        if single_sym:
-            return [str(single_sym).upper()]
+        if single_sym and str(single_sym).strip():
+            return [str(single_sym).upper().strip()]
+
+        raw_symbols = context.get("symbols") or context.get("target_symbols")
+        if raw_symbols and isinstance(raw_symbols, list):
+            resolved = [str(s).upper().strip() for s in raw_symbols if str(s).strip()]
+            if resolved:
+                return resolved
 
         return list(self.symbols)
 
