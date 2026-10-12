@@ -88,7 +88,9 @@ class RiskPortfolioManagerAgent(BaseAgent):
         if not state_portfolio and "portfolio" in context:
             state_portfolio = context["portfolio"]
 
+        eval_portfolio: PortfolioTracker | PortfolioSnapshot | dict[str, Any] = self.tracker
         if state_portfolio:
+            eval_portfolio = state_portfolio
             if isinstance(state_portfolio, PortfolioSnapshot):
                 self.tracker = PortfolioTracker(
                     initial_cash=state_portfolio.cash,
@@ -144,7 +146,7 @@ class RiskPortfolioManagerAgent(BaseAgent):
         # Validate signals batch with cumulative capacity tracking
         decisions: list[RiskDecision] = self.validator.validate_signals_batch(
             signals=signals,
-            portfolio=self.tracker,
+            portfolio=eval_portfolio,
             prices=prices,
             proposed_sizes=proposed_sizes,
             sectors=sectors,

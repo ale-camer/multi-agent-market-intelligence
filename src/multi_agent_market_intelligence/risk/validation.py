@@ -237,8 +237,11 @@ class SignalRiskValidator:
                 metrics={"violations": [RiskViolationType.CIRCUIT_BREAKER_ACTIVE.value]},
             )
 
-        # Pre-check 2: Max portfolio drawdown
-        if view.current_drawdown_pct > self.limits.max_portfolio_drawdown_pct:
+        # Pre-check 2: Max portfolio drawdown (restricts new risk accumulation)
+        if (
+            signal.action == SignalAction.BUY
+            and view.current_drawdown_pct > self.limits.max_portfolio_drawdown_pct
+        ):
             return RiskDecision(
                 status=DecisionStatus.REJECTED,
                 original_signal=signal,
@@ -254,8 +257,11 @@ class SignalRiskValidator:
                 },
             )
 
-        # Pre-check 3: Max daily loss limit
-        if view.daily_pnl_pct < -self.limits.max_daily_loss_pct:
+        # Pre-check 3: Max daily loss limit (restricts new risk accumulation)
+        if (
+            signal.action == SignalAction.BUY
+            and view.daily_pnl_pct < -self.limits.max_daily_loss_pct
+        ):
             return RiskDecision(
                 status=DecisionStatus.REJECTED,
                 original_signal=signal,
@@ -263,7 +269,7 @@ class SignalRiskValidator:
                 max_loss_limit=0.0,
                 reason=(
                     f"Daily loss ({view.daily_pnl_pct:.2%}) exceeds limit "
-                    f"(-{self.limits.max_daily_loss_pct:.2%})."
+                    f"({self.limits.max_daily_loss_pct:.2%})."
                 ),
                 metrics={
                     "daily_pnl_pct": view.daily_pnl_pct,
