@@ -8,7 +8,8 @@ dependencies = [
     "fastapi",
     "pydantic",
     "langgraph",
-    "langchain"
+    "langchain",
+    "uvicorn"
 ]
 
 [project.optional-dependencies]
@@ -31,7 +32,8 @@ all = [
     "ruff",
     "mypy",
     "pytest",
-    "pytest-cov"
+    "pytest-cov",
+    "uvicorn"
 ]
 
 [tool.ruff]
