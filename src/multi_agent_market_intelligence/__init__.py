@@ -7,6 +7,10 @@ from multi_agent_market_intelligence.agents import (
     BaseAgent,
     ResearchAgent,
 )
+from multi_agent_market_intelligence.api import (
+    app,
+    create_app,
+)
 from multi_agent_market_intelligence.messaging import (
     AgentMessage,
     MessageBus,
@@ -129,7 +133,9 @@ __all__ = [
     "TradingSignal",
     "TradingSignalGenerator",
     "aggressive_risk_limits",
+    "app",
     "conservative_risk_limits",
+    "create_app",
     "create_market_state",
     "create_research_node_handler",
     "create_risk_manager_node_handler",
