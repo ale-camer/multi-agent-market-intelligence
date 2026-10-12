@@ -30,6 +30,14 @@ from multi_agent_market_intelligence.research import (
     SentimentLabel,
     create_research_node_handler,
 )
+from multi_agent_market_intelligence.risk import (
+    RiskCheckResult,
+    RiskLimitsConfig,
+    RiskViolationType,
+    aggressive_risk_limits,
+    conservative_risk_limits,
+    moderate_risk_limits,
+)
 from multi_agent_market_intelligence.state import (
     AgentExecutionRecord,
     DecisionStatus,
@@ -89,7 +97,10 @@ __all__ = [
     "ReportType",
     "ResearchAgent",
     "ResearchArtifact",
+    "RiskCheckResult",
     "RiskDecision",
+    "RiskLimitsConfig",
+    "RiskViolationType",
     "SentimentAnalysisResult",
     "SentimentLabel",
     "SignalAction",
@@ -101,7 +112,10 @@ __all__ = [
     "TradingAnalystAgent",
     "TradingSignal",
     "TradingSignalGenerator",
+    "aggressive_risk_limits",
+    "conservative_risk_limits",
     "create_research_node_handler",
     "create_trading_analyst_node_handler",
     "generate_mock_ohlcv",
+    "moderate_risk_limits",
 ]
