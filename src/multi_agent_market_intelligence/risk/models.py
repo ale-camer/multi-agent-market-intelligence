@@ -1,11 +1,12 @@
 """Risk management domain models, violation classifications, and evaluation results."""
 
+from datetime import datetime, timezone
 from enum import StrEnum
 from typing import Any
 
 from pydantic import Field
 
-from multi_agent_market_intelligence.state.models import DomainStateModel
+from multi_agent_market_intelligence.state.models import DomainStateModel, SignalAction
 
 
 class RiskViolationType(StrEnum):
@@ -58,3 +59,32 @@ class RiskCheckResult(DomainStateModel):
             Dictionary serialization of RiskCheckResult.
         """
         return self.model_dump()
+
+
+class TradeExecution(DomainStateModel):
+    """Immutable audit record of an executed portfolio trade transaction."""
+
+    symbol: str
+    action: SignalAction
+    quantity: float
+    price: float
+    cost: float
+    realized_pnl: float = 0.0
+    commission: float = 0.0
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+class PortfolioMetrics(DomainStateModel):
+    """Quantitative performance and risk exposure metrics for the portfolio."""
+
+    total_equity: float
+    cash: float
+    gross_exposure: float
+    net_exposure: float
+    leverage: float
+    drawdown_pct: float
+    peak_equity: float
+    daily_pnl: float
+    daily_pnl_pct: float
+    positions_count: int
+    position_weights: dict[str, float] = Field(default_factory=dict)
