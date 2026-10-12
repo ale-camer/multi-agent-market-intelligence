@@ -35,6 +35,7 @@ def run_analysis(
 
     initial_state = create_market_state(
         context={
+            "symbols": request.symbols,
             "target_symbols": request.symbols,
             "correlation_id": corr_id,
         },
