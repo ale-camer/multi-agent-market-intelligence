@@ -1,4 +1,4 @@
-.PHONY: help venv deps lint format typecheck check test test-unit test-integration test-issue ci clean start-issue finish-issue finish-milestone
+.PHONY: help venv deps lint format typecheck check test test-unit test-integration test-issue ci clean start-issue finish-issue finish-milestone docker-build docker-run docker-compose-up docker-compose-down
 
 help:
 	@echo "Available commands:"
@@ -18,6 +18,10 @@ help:
 	@echo "  start-issue      - Start a new issue branch (requires ID=X NAME=short-name, optional TYPE=feature|fix)"
 	@echo "  finish-issue     - Finish and PR an issue branch (requires ID=X MSG='commit message')"
 	@echo "  finish-milestone - Finish and tag a milestone (requires MILESTONE=MX)"
+	@echo "  docker-build     - Build Docker image"
+	@echo "  docker-run       - Run Docker container on port 8000"
+	@echo "  docker-compose-up   - Start services via Docker Compose"
+	@echo "  docker-compose-down - Stop services via Docker Compose"
 
 venv:
 	python3 -m venv .venv
@@ -97,3 +101,15 @@ finish-milestone:
 	git push origin $(MILESTONE)
 	gh milestone edit $(MILESTONE) --state closed || true
 	git checkout develop
+
+docker-build:
+	docker build -t multi-agent-market-intelligence:latest .
+
+docker-run:
+	docker run -d --name market-intelligence-api -p 8000:8000 multi-agent-market-intelligence:latest
+
+docker-compose-up:
+	docker compose up -d
+
+docker-compose-down:
+	docker compose down
