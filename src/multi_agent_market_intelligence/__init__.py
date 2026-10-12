@@ -58,6 +58,7 @@ from multi_agent_market_intelligence.state import (
     StateContainer,
     StateProtocol,
     TradingSignal,
+    create_market_state,
 )
 from multi_agent_market_intelligence.trading import (
     BollingerBandsResult,
@@ -129,6 +130,7 @@ __all__ = [
     "TradingSignalGenerator",
     "aggressive_risk_limits",
     "conservative_risk_limits",
+    "create_market_state",
     "create_research_node_handler",
     "create_risk_manager_node_handler",
     "create_trading_analyst_node_handler",
